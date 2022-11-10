@@ -14,17 +14,12 @@ const galleryRef = document.querySelector('.gallery');
 // .gallery__item
 
 
-const makeGalleryMarkup = image => {
-  for (let i = 0; i < galleryItems.length; i++) {
-    return `
-    <img src="${galleryItems[i].preview}" alt="${galleryItems[i].description}" width="340">
-    `;
-  }
+const makeGalleryMarkup = galleryItem => {
+  return `
+    <img src="${galleryItem.preview}" alt="${galleryItem.description}" width="340">
+   `;
 };
-console.log(makeGalleryMarkup());
 
 const makeGallery = galleryItems.map(makeGalleryMarkup).join('');
+
 galleryRef.insertAdjacentHTML('afterbegin', makeGallery);
-
-
-
