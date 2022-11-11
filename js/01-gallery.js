@@ -3,15 +3,9 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-// Создание и рендер разметки по массиву данных galleryItems 
-// и предоставленному шаблону элемента галереи.
 
 const galleryRef = document.querySelector('.gallery');
 // console.log(galleryRef);
-
-// .gallery__link
-// .gallery__image
-// .gallery__item
 
 
 const makeGalleryMarkup = galleryItem => {
@@ -21,8 +15,8 @@ const makeGalleryMarkup = galleryItem => {
       <img
         src="${galleryItem.preview}" 
         alt="${galleryItem.description}" 
-        class="gallery__image"
         data-source="${galleryItem.original}"
+        class="gallery__image"
         >
     </a>
   </div>`;
@@ -33,18 +27,26 @@ galleryRef.insertAdjacentHTML('afterbegin', makeGallery);
 
 
 
-// Реализация делегирования на div.gallery и получение url большого изображения.
-
 function onClickImage(evt) {
   evt.preventDefault();
   if (!evt.target.classList.contains('gallery__image')) {
     return;
   }
   const imageLink = evt.target.dataset.source;
-  console.log(imageLink);
+  // console.log(imageLink);
+
+  const instance = basicLightbox.create(`
+		<img width="1200" src="${imageLink}" class="gallery__image">
+	`)
+  instance.show();
+
+
+  document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    instance.close()
+  }
+});
 }
 
-
-
-
 galleryRef.addEventListener('click', onClickImage);
+
