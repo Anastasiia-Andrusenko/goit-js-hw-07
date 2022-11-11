@@ -42,3 +42,14 @@
 .gallery__link:hover {
   cursor: zoom-in;
 }
+
+/* my style for overlay */
+
+.sl-overlay {
+  background: #181c26;
+}
+
+.sl-wrapper .sl-navigation button,
+.sl-wrapper .sl-close {
+  color: white;
+}
